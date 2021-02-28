@@ -13,26 +13,40 @@ class EmployeeController extends Controller
         }
         return view('dashboard');
     }
+
     public function login() { 
         if(Session::has('username')) {
             return redirect()->back();
         }
         return view('auth.pages.login');
     }
+
     public function index() {
         $employees = Employee::all(); // alternative to -> select * from employees
         //dd($data); //break statement
         return view('crud.pages.employees',compact('employees'));
     }
+
     public function insert() { 
         return view('crud.pages.insert');
     }
+
     public function store(Request $request) { //insert data into DB tables
         // $name = $request->name;
         // $email = $request->email;
         // $address = $request->address;
         // $age = $request->age;
         // echo $name.'<br>'.$email.'<br>'.$address.'<br>'.$age;
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'gender' => 'required',
+            'is_active' => 'required',
+            'date_of_birth' => 'required',
+            'role' => 'required',
+            'password' => 'required',
+        ]);
+    
         $obj = new Employee();
         $obj->name = $request->name;
         $obj->email = $request->email;
@@ -45,11 +59,13 @@ class EmployeeController extends Controller
             return redirect()->to('employees');
         }
     }
+
     public function edit($id){ //show aviewfor specific employee
         // $employee = Employee::where('id','=',$id)->get(); //return array
         $employee = Employee::find($id); //return obj
         return view('crud.pages.edit',compact('employee'));
     }
+
     public function update(Request $request,$id){ 
         $obj = Employee::find($id);
         $obj->name = $request->name;
@@ -62,8 +78,8 @@ class EmployeeController extends Controller
         if($obj->save()) {
             return redirect()->to('employees');
         }
-        
     }
+
     public function delete($id){ //show aviewfor specific employee
         // $employee = Employee::where('id','=',$id)->get(); //return array
         $obj = Employee::find($id); //return obj
