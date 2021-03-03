@@ -147,6 +147,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'is_active' => 'status'
+    ],
 
 ];

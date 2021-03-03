@@ -23,7 +23,7 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <!-- <label for=""> Name</label> -->
-                        <input type="text" class="form-control"  name="name" placeholder="Name" id="">
+                        <input type="text" class="form-control" value="{{ old('name')}}" name="name" placeholder="Name" id="">
                         @if($errors->has('name')) 
                             <div class="alert alert-warning">
                             {{ $errors->first('name')}}
@@ -33,9 +33,9 @@
 
                     <div class="form-group">
                         <!-- <label for="">Email</label> -->
-                        <input type="email"class="form-control"  name="email" id="" placeholder="Email">
+                        <input type="email"class="form-control" value="{{ old('email')}}" name="email" id="" placeholder="Email">
                         @if($errors->has('email'))
-                            <div class="alert alert-warningwarning
+                            <div class="alert alert-warning">
                                 {{ $errors->first('email')}}
                             </div>
                         @endif
@@ -67,7 +67,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="is_active" value="1" id="" >
                             <label class="form-check-label" for="">
-                                Active
+                                Active  
                             </label>
                         </div>
                         <div class="form-check">
@@ -84,7 +84,7 @@
                     </div>
                     <div class="form-group">
                         <!-- <label for="">Date of Birth</label> -->
-                        <input type="date" class="form-control"  name="date_of_birth" id="" placeholder="Date of birth">
+                        <input type="date" class="form-control" value="{{ old('date_of_birth')}}" name="date_of_birth" id="" placeholder="Date of birth">
                         @if($errors->has('date_of_birth'))
                             <div class="alert alert-warning">
                                 {{ $errors->first('date_of_birth')}}
@@ -106,7 +106,7 @@
                     </div>
                     <div class="form-group">
                         <!-- <label for="">Password</label> -->
-                        <input type="password" class="form-control"  name="password" id="" placeholder="Password">
+                        <input type="password" class="form-control" value="{{ old('password')}}" name="password" id="" placeholder="Password">
                         @if($errors->has('password'))
                             <div class="alert alert-warning">
                                 {{ $errors->first('password')}}

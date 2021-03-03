@@ -38,13 +38,13 @@ class EmployeeController extends Controller
         // $age = $request->age;
         // echo $name.'<br>'.$email.'<br>'.$address.'<br>'.$age;
         $validated = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'gender' => 'required',
-            'is_active' => 'required',
-            'date_of_birth' => 'required',
-            'role' => 'required',
-            'password' => 'required',
+            'name' => 'required|string',
+            'email' => 'required|email|unique:employees,email',
+            'gender' => 'required|alpha',
+            'is_active' => 'required|accepted',
+            'date_of_birth' => 'required|date',
+            'role' => 'required|alpha',
+            'password' => 'required|string',
         ]);
     
         $obj = new Employee();
