@@ -4,6 +4,7 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LayoutController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,7 @@ Route::middleware(['IsLoggedIn', 'IsAdminLogged'])->group(function () {
 });
 Route::middleware(['IsLoggedIn', 'IsEmployeeLogged'])->group(function () {
     Route::get('employeehome', [AuthController::class, 'employeehome']);
+    Route::get('products', [ProductController::class, 'all']);
 });
 Route::get('logout', [AuthController::class, 'logout']);
 
