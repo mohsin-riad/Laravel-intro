@@ -148,6 +148,7 @@ return [
     */
 
     'attributes' => [
+        'email' => 'E-Mail address',
         'is_active' => 'status'
     ],
 
