@@ -1,5 +1,7 @@
-
 @extends('product.layout.main')
+@section('left-navbar')
+    <a href="#" class="nav-item nav-link">Products</a>
+@stop
 @section('right-navbar')
     <a href="{{ URL::to('logout') }}" class="nav-item nav-link">Log Out</a>
     <a href="#" class="nav-item btn btn-warning"><strong>>> {{ Session::get('userrole')}}<strong></a>
@@ -23,7 +25,7 @@
     @endif
     <div class="container" style="margin-top:40px">
         <h2>All Products</h2>
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="abc">
             <thead class="thead-dark" >
                 <th class="text-center">Product</th>
                 <th class="text-center">Price</th>
@@ -47,9 +49,23 @@
             </tbody>
         </table>
     </div>
+
     <script>
         $(document).ready( function () {
-            $('.table').DataTable();
-        } );
+            $('#abc').DataTable({
+                "aoColumnDefs": [{
+                    "bSortable": false, 
+                    "aTargets": [ 2,3 ] //Disable sort on multiple column
+                }],
+
+                dom: 'Bfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ]
+            });
+        });
     </script>
 @stop
