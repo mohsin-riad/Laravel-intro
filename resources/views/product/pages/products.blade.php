@@ -1,5 +1,7 @@
-
 @extends('product.layout.main')
+@section('left-navbar')
+    <a href="#" class="nav-item nav-link">Products</a>
+@stop
 @section('right-navbar')
     <a href="{{ URL::to('logout') }}" class="nav-item nav-link">Log Out</a>
     <a href="#" class="nav-item btn btn-warning"><strong>>> {{ Session::get('userrole')}}<strong></a>
@@ -23,12 +25,13 @@
     @endif
     <div class="container" style="margin-top:40px">
         <h2>All Products</h2>
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="abc">
             <thead class="thead-dark" >
                 <th class="text-center">Product</th>
                 <th class="text-center">Price</th>
                 <th class="text-center">Category</th>
-                <th class="text-center">Action</th>
+                <th class="text-center">Edit</th>
+                <th class="text-center">Delete</th>
             </thead>
             <tbody class="text-center">
                 @if($products)
@@ -37,19 +40,50 @@
                             <td>{{ $p->product }}</td>
                             <td>{{ $p->price }}</td>
                             <td>{{ $p->category }}</td>
-                            <td>
-                                <button class="btn btn-warning">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
-                            </td>
+                            <td><button class="btn btn-warning">Edit</button></td>
+                            <td><button class="btn btn-danger">Delete</button></td>
                         </tr>
                     @endforeach
                 @endif
             </tbody>
         </table>
     </div>
+
     <script>
         $(document).ready( function () {
-            $('.table').DataTable();
-        } );
+            $('#abc').DataTable({
+                "aoColumnDefs": [{
+                    "bSortable": false, 
+                    "aTargets": [ 3,4 ] //Disable sort on multiple column
+                }],
+
+                dom: 'Bfrtip',
+                buttons: [
+                    'pageLength', //button to show 10-20-50 rows
+                    //Exclude column from export
+                    {
+                        extend: 'copyHtml5',
+                        exportOptions: { columns: [ 0, 1, 2 ] }
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        exportOptions: { columns: [ 0, 1, 2 ] }
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        exportOptions: { columns: [ 0, 1, 2 ] }
+                    },
+                    {    
+                        extend: 'pdfHtml5',
+                        exportOptions: { columns: [ 0, 1, 2 ] }
+                    }
+                ],
+                
+                lengthMenu: [ //Page length
+                    [ 10, 25, 50, -1 ],
+                    [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+                ]
+            });
+        });
     </script>
 @stop
