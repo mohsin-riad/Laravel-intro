@@ -1,10 +1,11 @@
 @extends('auth.layout.main')
 @section('left-navbar')
     <a href="{{ URL::to('products') }}" class="nav-item nav-link">Products</a>
+    <a href="{{ URL::to('upload') }}" class="nav-item nav-link">Upload</a>
 @stop
 @section('right-navbar')
     <a href="{{ URL::to('logout') }}" class="nav-item nav-link">Log Out</a>
-    <a href="#" class="nav-item btn btn-warning"><strong>>> {{ Session::get('userrole')}}<strong></a>
+    <a href="#" class="nav-item btn btn-warning"><strong> {{ Session::get('username')}} | {{ Session::get('userrole')}}<strong></a>
 @stop
 @section('content')
     @if(Session::has('msg'))
