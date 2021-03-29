@@ -58,9 +58,9 @@
                     "aTargets": [ 3,4 ] //Disable sort on multiple column
                 }],
 
-                dom: 'Bfrtip',
+                dom: 'Blfrtip',
                 buttons: [
-                    'pageLength', //button to show 10-20-50 rows
+                    // 'pageLength', //button to show 10-20-50 rows
                     //Exclude column from export
                     {
                         extend: 'copyHtml5',
@@ -80,10 +80,10 @@
                     }
                 ],
                 
-                lengthMenu: [ //Page length
-                    [ 10, 25, 50, -1 ],
-                    [ '10 rows', '25 rows', '50 rows', 'Show all' ]
-                ]
+                // lengthMenu: [ //Page length
+                //     [ 10, 25, 50, -1 ],
+                //     [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+                // ]
             });
         });
     </script>
