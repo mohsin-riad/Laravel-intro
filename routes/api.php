@@ -28,4 +28,4 @@ Route::get('product/{id}', [ProductController::class, 'getProductById']);
 Route::get('employees', [ApiController::class, 'employees']);
 Route::post('insert-employees', [ApiController::class, 'insert']);
 Route::get('get-employee/{id}', [ApiController::class, 'edit']);
-Route::post('update-employees', [ApiController::class, 'update']);
+Route::post('update-employees/{id}', [ApiController::class, 'update']);

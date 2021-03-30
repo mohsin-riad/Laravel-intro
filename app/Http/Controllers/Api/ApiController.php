@@ -28,6 +28,7 @@ class ApiController extends Controller
             'msg'=> $msg
         ]);
     }
+
     public function insert(Request $request) {
         $obj = new Employee();
         $obj->name = $request->name;
@@ -40,11 +41,11 @@ class ApiController extends Controller
         if($obj->save()) {
             return response()->json([
                 'data'=> $obj,
-                'error'=> false,
-                'msg'=> "Data Inserted"
+                'msg'=> "Employee Information successfully Inserted"
             ]);
         }
     }
+
     public function edit($id){ //show aviewfor specific employee
         // $employee = Employee::where('id','=',$id)->get(); //return array
         $employee = Employee::find($id); //return obj
@@ -64,9 +65,8 @@ class ApiController extends Controller
         $obj->role = $request->role;
         if($obj->save()) {
             return response()->json([
-                'data'=> $obj,
-                'error'=> false,
-                'msg'=> "Data Inserted"
+                'employee'=> $obj,
+                'msg'=> "Information Updated"
             ]);
         }
     }
