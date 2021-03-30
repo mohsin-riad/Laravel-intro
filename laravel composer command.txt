@@ -1,0 +1,28 @@
+//create project any path via composer command
+composer create-project laravel/laravel example-name 	
+cd example-name 
+php artisan serve		
+
+//Laravel installer
+composer global require laravel/installer  	// 1st time use only to set up laravel
+
+laravel new project_name 
+
+//craeate new controller
+php artisan make:controller <controller-name>  
+
+
+//craeate Migration
+php artisan make:model <model-name> -m  
+//update db|migration 
+php artisan migrate
+or,  php artisan migrate:refresh
+
+//create seeder 
+php artisan make:seeder <model-seeder-name>
+//seed execution
+php artisan db:seed
+
+//create Factory
+php artisan make:factory <model-factory-name>  --model=<model-name>
+
